@@ -8,17 +8,6 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 The first time I ran the game, it opened a Streamlit page called “Game Glitch Investigator.” It had a sidebar to choose the difficulty, a message asking the player to guess a number, and a text box to enter guesses. There were also buttons for Submit Guess, New Game, and an option to show hints, along with a debug section that displayed the secret number and other game details.
 - List at least two concrete bugs you noticed at the start  
   (for example: "the secret number kept changing" or "the hints were backwards").
-Bug 1 – Incorrect hint messages:
-Expected: If the guess is higher than the secret number, the game should say “Go LOWER,” and if the guess is lower, it should say “Go HIGHER.”
-Actual: The hints are reversed. When the guess is too high, the game says “Go HIGHER,” and when the guess is too low, it says “Go LOWER.”
-
-Bug 2 – Difficulty range message mismatch:
-Expected: The message showing the guessing range should match the selected difficulty (Easy: 1–20, Normal: 1–100, Hard: 1–50).
-Actual: The game always shows “Guess a number between 1 and 100,” regardless of the selected difficulty.
-
-Bug 3 – New Game dosenot work:
-Expected: When starting a new game, the game should restart with the new secret numebr.
-Actual: The program always generates the number using random.randint(1, 100) and the game doesnot restart.
 
 ---
 
@@ -47,11 +36,9 @@ Yes, AI helped me design the pytest test. Copilot suggested creating a simple te
 ## 4. What did you learn about Streamlit and state?
 
 - In your own words, explain why the secret number kept changing in the original app.
-The secret number kept changing because Streamlit reruns the entire script every time the user interacts with the app, such as when clicking a button or entering a guess. Since the secret number was being generated each time the script ran, it kept resetting instead of staying the same during the game.
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
-Streamlit reruns the script from top to bottom every time the user interacts with the interface. This means variables normally get reset unless they are stored in session state. Session state allows values like the secret number, attempts, and score to persist between reruns. I would explain it to a friend as a way for Streamlit to “remember” important values while the app refreshes.
 - What change did you make that finally gave the game a stable secret number?
-The change that fixed this issue was storing the secret number inside st.session_state. By checking if "secret" was already in st.session_state before generating a new number, the program keeps the same secret number during the game instead of creating a new one every time the app reruns.
+
 ---
 
 ## 5. Looking ahead: your developer habits
